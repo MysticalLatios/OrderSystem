@@ -107,39 +107,39 @@
         //     data tier to execute it for us
 
         //Test querry
-        $empl_query_str = 'select Order_id, Cus_name, salary, commission
-                           from Orders';
+        $order_query_str = 'select o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
+                            from Orders o, LineItem i
+                            where o.Order_line_item = i.Item_id';
                            
-        $empl_query_stmt = oci_parse($conn, $empl_query_str);
+        $order_query_stmt = oci_parse($conn, $order_query_str);
 
-        oci_execute($empl_query_stmt, OCI_DEFAULT);
+        oci_execute($order_query_stmt, OCI_DEFAULT);
         ?>
 
         <table>
-            <caption> Employee Information </caption>
-            <tr> <th scope="col"> Employee Name </th>
-                 <th scope="col"> Hire Date </th>
-                 <th scope="col"> Salary </th>
-                 <th scope="col"> Commission </th> </tr>
+            <caption> Orders </caption>
+            <tr> <th scope="col"> Table </th>
+                 <th scope="col"> Customer name </th>
+                 <th scope="col"> Active </th>
+                 <th scope="col"> Order Item </th>
+                 <th scope="col"> Order Date </th> </tr>
 
         <?php
-            while (oci_fetch($empl_query_stmt))
+            while (oci_fetch($order_query_stmt))
             {
-                $curr_empl_name = oci_result($empl_query_stmt, 'EMPL_LAST_NAME');
-                $curr_hiredate = oci_result($empl_query_stmt, 'HIREDATE');
-                $curr_salary = oci_result($empl_query_stmt, 'SALARY');
-                $curr_commission = oci_result($empl_query_stmt, 'COMMISSION');
+                $order_table = oci_result($order_query_stmt, 'ORDER_TABLE');
+                $order_cus_name = oci_result($order_query_stmt, 'CUS_NAME');
+                $order_active = oci_result($order_query_stmt, 'ORDER_ACTIVE');
+                $order_item = oci_result($order_query_stmt, 'ITEM_NAME');
+                $order_date = oci_result($order_query_stmt, 'ORDER_DATE');
 
-                if ($curr_commission === NULL)
-                {
-                    $curr_commission = "no commission";
-                }
 
                 ?>
-                <tr> <td> <?= $curr_empl_name ?> </td>
-                     <td> <?= $curr_hiredate ?> </td>
-                     <td> <?= $curr_salary ?> </td>
-                     <td> <?= $curr_commission ?> </td>
+                <tr> <td> <?= $order_table ?> </td>
+                     <td> <?= $order_cus_name ?> </td>
+                     <td> <?= $order_active ?> </td>
+                     <td> <?= $order_item ?> </td>
+                     <td> <?= $order_date ?> </td>
                 </tr> 
                 <?php
             }
@@ -149,7 +149,7 @@
             <?php
 
             //end the connection
-             oci_free_statement($empl_query_stmt);
+             oci_free_statement($order_query_stmt);
              oci_close($conn);
     }
     
