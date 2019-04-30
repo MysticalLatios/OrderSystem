@@ -23,7 +23,7 @@
 <body>
 
     <div id="nav"> 
-        <h2> Welcome to our restaurant! </h2>
+        <h2> Staff site for our restruant: </h2>
 
         <button type="button" onclick="location.href='index.php'">Customer Ordering</button>
         <button type="button" onclick="location.href='staff.php'" >Show orders</button>
@@ -107,8 +107,8 @@
         //     data tier to execute it for us
 
         //Test querry
-        $empl_query_str = 'select empl_last_name, hiredate, salary, commission
-                           from empl';
+        $empl_query_str = 'select Order_id, Cus_name, salary, commission
+                           from Orders';
                            
         $empl_query_stmt = oci_parse($conn, $empl_query_str);
 
