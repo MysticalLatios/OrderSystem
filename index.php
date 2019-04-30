@@ -86,8 +86,8 @@
             <?php
             require_once("footer.html");
             ?>
-</body>
-</html>
+            </body>
+            </html>
             <?php
             exit;
         }
@@ -95,62 +95,28 @@
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
 
-        ?>
-            
-        <?php
-
-        
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL; 
 
-        // let's set up a SQL SELECT statement and ask the
-        //     data tier to execute it for us
+        $order_input_stmt = 'insert into Orders(Order_id, Cus_name, Order_date, Order_active, Order_table, Order_line_item)
+        values(:order_id, :cus_name, SYSDATE, :active, :table, :line_item)';
 
-        //Test querry
-        $empl_query_str = 'select empl_last_name, hiredate, salary, commission
-                           from empl';
                            
-        $empl_query_stmt = oci_parse($conn, $empl_query_str);
+        $order_input_stmt = oci_parse($conn, $order_input_stmt);
 
-        oci_execute($empl_query_stmt, OCI_DEFAULT);
-        ?>
 
-        <table>
-            <caption> Employee Information </caption>
-            <tr> <th scope="col"> Employee Name </th>
-                 <th scope="col"> Hire Date </th>
-                 <th scope="col"> Salary </th>
-                 <th scope="col"> Commission </th> </tr>
+        oci_bind_by_name($order_input_stmt, ":order_id", $order_id);
+        oci_bind_by_name($order_input_stmt, ":cus_name", $cus_name);
+        oci_bind_by_name($order_input_stmt, ":active", $order_active);
+        oci_bind_by_name($order_input_stmt, ":table", $order_table);
+        oci_bind_by_name($order_input_stmt, ":line_item", $order_item);
 
-        <?php
-            while (oci_fetch($empl_query_stmt))
-            {
-                $curr_empl_name = oci_result($empl_query_stmt, 'EMPL_LAST_NAME');
-                $curr_hiredate = oci_result($empl_query_stmt, 'HIREDATE');
-                $curr_salary = oci_result($empl_query_stmt, 'SALARY');
-                $curr_commission = oci_result($empl_query_stmt, 'COMMISSION');
+        oci_execute($order_input_stmt, OCI_DEFAULT);
 
-                if ($curr_commission === NULL)
-                {
-                    $curr_commission = "no commission";
-                }
 
-                ?>
-                <tr> <td> <?= $curr_empl_name ?> </td>
-                     <td> <?= $curr_hiredate ?> </td>
-                     <td> <?= $curr_salary ?> </td>
-                     <td> <?= $curr_commission ?> </td>
-                </tr> 
-                <?php
-            }
-            ?>
-            </table>
 
-            <?php
-
-            //end the connection
-             oci_free_statement($empl_query_stmt);
-             oci_close($conn);
+        //end the connection
+        oci_free_statement($order_input_stmt);
     }
     
 ?>  
