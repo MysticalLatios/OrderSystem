@@ -35,7 +35,7 @@
             <p> Could not log into Oracle, sorry. </p>
 
             <?php
-            require_once("328footer.html");
+            require_once("footer.html");
             ?>
 </body>
 </html>

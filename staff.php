@@ -16,7 +16,9 @@
 	<?php
 	ini_set('display_startup_errors',1);
 	ini_set('display_errors',1);
-	error_reporting(-1);
+    error_reporting(-1);
+    
+    require_once("hsu_conn.php")
     ?>
 </head> 
 
@@ -66,31 +68,10 @@
         // Get password from post into var
         $password = $_POST['password'];
 
-        // Connection str
-        $db_conn_str =
-            "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
-                                    (HOST = cedar.humboldt.edu)
-                                    (PORT = 1521))
-                                    (CONNECT_DATA = (SID = STUDENT)))";
-
         // Use oci_conect to login in
-        $conn = oci_connect($username, $password, $db_conn_str);
+        $conn = hsu_conn($username, $password);
 
-        // exiting if connection/log in failed
 
-        if (! $conn)
-        {
-            ?>
-            <p> Could not log into Oracle, sorry </p>
-
-            <?php
-            require_once("footer.html");
-            ?>
-</body>
-</html>
-            <?php
-            exit;
-        }
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
