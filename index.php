@@ -13,6 +13,9 @@
     <link href="http://users.humboldt.edu/smtuttle/styles/normalize.css"
           type="text/css" rel="stylesheet" />
 
+    <link href="style.css"
+        type="text/css" rel="stylesheet" />
+
 	<?php
 	ini_set('display_startup_errors',1);
 	ini_set('display_errors',1);
@@ -59,31 +62,14 @@
                                     (CONNECT_DATA = (SID = STUDENT)))";
 
         // Use oci_conect to login in
-        $conn = oci_connect($username, $password, $db_conn_str);
+        $conn = hsu_conn($username, $password);
 
-        // exiting if connection/log in failed
-
-        if (! $conn)
-        {
-            ?>
-            <p> Could not log into Oracle, sorry </p>
-
-            <?php
-            require_once("footer.html");
-            ?>
-            </body>
-            </html>
-            <?php
-            exit;
-        }
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
 
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL; 
-
-        
     }
     
 ?>  

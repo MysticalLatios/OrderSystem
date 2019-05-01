@@ -13,6 +13,9 @@
     <link href="http://users.humboldt.edu/smtuttle/styles/normalize.css"
           type="text/css" rel="stylesheet" />
 
+    <link href="style.css"
+        type="text/css" rel="stylesheet" />
+
 	<?php
 	ini_set('display_startup_errors',1);
 	ini_set('display_errors',1);
@@ -50,7 +53,7 @@
         // Get password from post into var
         $password = $_POST['password'];
 
-        // Use oci_conect to login in
+        // Use hsu to login in
         $conn = hsu_conn($username, $password);
 
 
