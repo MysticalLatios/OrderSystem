@@ -43,7 +43,34 @@
     {
         // If they are not loged in give them the login page
         require_once("login_form.php");
-    }      
+    }
+    
+    elseif( array_key_exists("firstname", $_POST))
+    {
+        //The user already submited an order so do stuff with it
+        // Strip username tags
+        $username = strip_tags($_POST['username']);
+
+        // Get password from post into var
+        $password = $_POST['password'];
+
+        // Use oci_conect to login in
+        $conn = hsu_conn($username, $password);
+
+        //Clear the password var becuase we dont need it anymore as we have the connection
+        $password = NULL; 
+
+        //get our function
+        require_once("add_order.php");
+
+        //Add the order
+        add_order($conn, $_POST['firstname'], $_POST['tablenum'], $_POST['item']);
+
+        // Then Give them the order form again for an additional order
+        require_once("order_form.php");
+
+    }
+        
 
     //We have oracle login so continue as normal
     else
@@ -54,22 +81,18 @@
         // Get password from post into var
         $password = $_POST['password'];
 
-        // Connection str
-        $db_conn_str =
-            "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
-                                    (HOST = cedar.humboldt.edu)
-                                    (PORT = 1521))
-                                    (CONNECT_DATA = (SID = STUDENT)))";
-
         // Use oci_conect to login in
         $conn = hsu_conn($username, $password);
+
+        //Clear the password var becuase we dont need it anymore as we have the connection
+        $password = NULL; 
 
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
 
-        //Clear the password var becuase we dont need it anymore as we have the connection
-        $password = NULL; 
+        // Give them the order form
+        require_once("order_form.php");
     }
     
 ?>  
