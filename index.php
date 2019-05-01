@@ -38,26 +38,8 @@
     // Check if they have loged in from the oracle stuff
     if ( ! array_key_exists("username", $_POST) )
     {
-        // If theyare not give them the login page
-        ?>
-        <form method="post" 
-              action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
-        <fieldset>
-            <legend> Please enter HSU Oracle username/password: </legend>
-
-            <label for="username"> Username: </label>
-            <input type="text" name="username" id="username" /> 
-
-            <label for="password"> Password: </label>
-            <input type="password" name="password" 
-                   id="password" />
-
-            <div class="submit">
-                <input type="submit" value="Log in" />
-            </div>
-        </fieldset>
-        </form>
-    <?php
+        // If they are not loged in give them the login page
+        require_once("login_form.php");
     }      
 
     //We have oracle login so continue as normal
