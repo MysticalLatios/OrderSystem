@@ -1,16 +1,6 @@
 <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
             <fieldset>
                 <legend> Please submit your order: </legend>
-
-                <label for="username"> HSU Oracle Username: </label>
-                <input type="text" name="username" id="username" value=<?=strip_tags($_POST['username'])?>> 
-
-                <label for="password"> HSU Oracle Password: </label>
-                <input type="password" name="password" 
-                id="password" />
-
-                <br/>
-
                 <label for="firstname"> Your first name: </label>
                 <input type="text" name="firstname" id="firstname"/> 
 
@@ -21,6 +11,8 @@
                     <option value="T0000003">Table 3</option>
                     <option value="T0000004">Table 4</option>
                 </select>
+
+                <br/>
 
                 <label for="item"> What would you like to order? </label>
                 <select name="item" id="item">

@@ -7,11 +7,18 @@ insert into OTable(OTable_id, Waiter_id) values('T0000001', 'W0000002');
 insert into OTable(OTable_id, Waiter_id) values('T0000002', 'W0000002');
 insert into OTable(OTable_id, Waiter_id) values('T0000003', 'W0000001');
 insert into OTable(OTable_id, Waiter_id) values('T0000004', 'W0000003');
+insert into OTable(OTable_id, Waiter_id) values('T0000005', 'W0000003');
+insert into OTable(OTable_id, Waiter_id) values('T0000006', 'W0000001');
+insert into OTable(OTable_id, Waiter_id) values('T0000007', 'W0000001');
+insert into OTable(OTable_id, Waiter_id) values('T0000008', 'W0000003');
 select * from OTable;
 
 insert into LineItem(Item_id, Item_name, Item_price) values('F0000001', 'Pep pizza', 6.25);
 insert into LineItem(Item_id, Item_name, Item_price) values('F0000002', 'Pin pizza', 8.25);
+insert into LineItem(Item_id, Item_name, Item_price) values('F0000003', 'Grilled Cheese', 4.20);
+insert into LineItem(Item_id, Item_name, Item_price) values('F0000004', 'Fried Chiken Slabs', 8.75);
 insert into LineItem(Item_id, Item_name, Item_price) values('D0000001', 'Soda', 1.50);
+insert into LineItem(Item_id, Item_name, Item_price) values('D0000002', 'Ice Tea', 1.75);
 select * from LineItem;
 
 

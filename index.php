@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    
+	ini_set('display_startup_errors', 1);
+	ini_set('display_errors', 1);
+    error_reporting(-1);
+    
+    require_once("hsu_conn.php");
+    require_once("add_order.php");
+?>
+
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml">
 
@@ -15,15 +26,6 @@
 
     <link href="style.css"
         type="text/css" rel="stylesheet" />
-
-	<?php
-	ini_set('display_startup_errors',1);
-	ini_set('display_errors',1);
-    error_reporting(-1);
-    
-    require_once("hsu_conn.php");
-    require_once("add_order.php");
-    ?>
 </head> 
 
 <body>
@@ -38,24 +40,18 @@
     </div>
 
 <?php
-    // Check if they have loged in from the oracle stuff
-    if ( ! array_key_exists("username", $_POST) )
+    // Check if thhe client is not yet in our session logic
+    if ( ! array_key_exists("next_state", $_SESSION) )
     {
-        // If they are not loged in give them the login page
+        // They are not loged in give them the login page
+        $_SESSION["next_state"] = "login";
         require_once("login_form.php");
     }
     
-    elseif( array_key_exists("firstname", $_POST))
+    elseif( $_SESSION["next_state"] == "order")
     {
-        //The user already submited an order so do stuff with it
-        // Strip username tags
-        $username = strip_tags($_POST['username']);
-
-        // Get password from post into var
-        $password = $_POST['password'];
-
-        // Use oci_conect to login in
-        $conn = hsu_conn($username, $password);
+        // Get the connection from the session
+        $conn = $_SESSION["oci_con"];
 
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL; 
@@ -73,7 +69,7 @@
         
 
     //We have oracle login so continue as normal
-    else
+    elseif($_SESSION["next_state"] == "login")
     {
         // Strip username tags
         $username = strip_tags($_POST['username']);
@@ -82,26 +78,34 @@
         $password = $_POST['password'];
 
         // Use oci_conect to login in
-        $conn = hsu_conn($username, $password);
+        hsu_conn($username, $password);
 
         //Clear the password var becuase we dont need it anymore as we have the connection
-        $password = NULL; 
+        $password = NULL;
 
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
 
         // Give them the order form
+        $_SESSION["next_state"] = "order";
         require_once("order_form.php");
     }
-    
+
+    else
+    {
+        ?>
+        <p> <strong> WOOPS We are in a state we should never enter </strong> </p>
+        <?php
+
+        session_destroy();
+    }    
 ?>  
-    
-    <?php
-        require_once("footer.html");
-    ?>
+
+
+<?php
+    require_once("footer.html");
+?>
 
 </body>
-
-
 </html>

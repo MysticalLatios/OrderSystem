@@ -43,6 +43,8 @@
             exit;        
         }
 
+        $_SESSION["oci_con"] = $connctn;
+
         return $connctn;
     }
 ?>
