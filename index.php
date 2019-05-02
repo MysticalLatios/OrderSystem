@@ -79,11 +79,20 @@
 
     elseif( $_SESSION["next_state"] == "order")
     {
+        //Go to the new order
+        $_SESSION["next_state"] = "new_order";
+
+        // Then Give them the order form again for an additional order
+        require_once("order_form.php");
+    }
+
+    elseif( $_SESSION["next_state"] == "new_order")
+    {
         // Get the connection using the 
         $conn = hsu_conn($_SESSION["user"], $_SESSION["pass"]);
 
         //Add the order
-        add_order($conn, $_POST['firstname'], $_POST['tablenum'], $_POST['item']);
+        add_order($conn, $_SESSION['firstname'], $_SESSION['tablenum'], $_POST['item']);
 
         // Then Give them the order form again for an additional order
         require_once("order_form.php");
