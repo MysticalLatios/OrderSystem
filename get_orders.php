@@ -10,7 +10,7 @@ function get_your_orders($conn, $name)
 
     $order_query_stmt = oci_parse($conn, $order_query_str);
 
-    oci_bind_by_name($order_query_str, ":name_in", $name);
+    oci_bind_by_name($order_query_stmt, ":name_in", $name);
 
     oci_execute($order_query_stmt, OCI_DEFAULT);
     ?>
