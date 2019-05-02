@@ -50,7 +50,7 @@
         require_once("login_form.php");
     }    
     
-    elseif (isset("log_out", $_POST) )
+    elseif (array_key_exists("log_out", $_POST) )
     {
         //If we press logout, logout
         session_destroy();
