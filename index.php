@@ -32,9 +32,11 @@
 
     <div id="nav"> 
         <h2> Welcome to our restaurant! </h2>
-
-        <button type="button" onclick="location.href='index.php'">Customer Ordering</button>
-        <button type="button" onclick="location.href='staff.php'" >Show orders</button>
+        <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
+            <button type="button" onclick="location.href='index.php'">Customer Ordering</button>
+            <button type="button" onclick="location.href='staff.php'" >Show orders</button>
+            <input type="submit" name="log_out" value="log_out" />
+        </form>
 
         <hr />
     </div>
@@ -46,7 +48,14 @@
         // They are not loged in give them the login page
         $_SESSION["next_state"] = "table";
         require_once("login_form.php");
-    }        
+    }    
+    
+    elseif (isset("log_out", $_POST) )
+    {
+        //If we press logout, logout
+        session_destroy();
+        exit;
+    }  
 
     //We have oracle login so continue as normal
     elseif($_SESSION["next_state"] == "table")
