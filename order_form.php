@@ -1,19 +1,6 @@
 <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
             <fieldset>
                 <legend> Please submit your order: </legend>
-                <label for="firstname"> Your first name: </label>
-                <input type="text" name="firstname" id="firstname"/> 
-
-                <label for="tablenum"> What Table are you sitting at? </label>
-                <select name="tablenum" id="tablenum">
-                    <option value="T0000001">Table 1</option>
-                    <option value="T0000002">Table 2</option>
-                    <option value="T0000003">Table 3</option>
-                    <option value="T0000004">Table 4</option>
-                </select>
-
-                <br/>
-
                 <label for="item"> What would you like to order? </label>
                 <select name="item" id="item">
                     <option value="F0000001">Peperoni pizza</option>
