@@ -7,6 +7,7 @@
     
     require_once("hsu_conn.php");
     require_once("add_order.php");
+    require_once("get_orders.php");
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +110,8 @@
 
         // Then Give them the order form again for an additional order
         require_once("order_form.php");
+
+        get_your_orders($conn, $_SESSION['firstname']);
     }
 
     else
