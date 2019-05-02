@@ -35,7 +35,7 @@
         <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
             <button type="button" onclick="location.href='index.php'">Customer Ordering</button>
             <button type="button" onclick="location.href='staff.php'" >Show orders</button>
-            <input type="submit" name="log_out" value="log_out" />
+            <input type="submit" name="log_out" value="Log out" />
         </form>
 
         <hr />
@@ -88,6 +88,10 @@
 
     elseif( $_SESSION["next_state"] == "order")
     {
+        //Store name and table in the session
+        $_SESSION['firstname'] = $POST['firstname'];
+        $_SESSION['tablenum'] = $POST['tablenum'];
+
         //Go to the new order
         $_SESSION["next_state"] = "new_order";
 
