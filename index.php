@@ -89,8 +89,8 @@
     elseif( $_SESSION["next_state"] == "order")
     {
         //Store name and table in the session
-        $_SESSION['firstname'] = $POST['firstname'];
-        $_SESSION['tablenum'] = $POST['tablenum'];
+        $_SESSION['firstname'] = $_POST['firstname'];
+        $_SESSION['tablenum'] = $_POST['tablenum'];
 
         //Go to the new order
         $_SESSION["next_state"] = "new_order";
