@@ -9,26 +9,23 @@
             successful, and... CAN this end document and exit calling PHP
             if NOT successful?!
 
-        uses: 328footer.html
-        last modified: 2018-03-12
+        uses: footer.html
+        last modified: 2019-05-2
     -----*/
 
     function hsu_conn($usr, $pwd)
     {
         // set up db connection string
-
         $db_conn_str = 
             "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
                                        (HOST = cedar.humboldt.edu)
                                        (PORT = 1521))
                             (CONNECT_DATA = (SID = STUDENT)))";
 
-        // let's try to log on using this string!
-
+        // let's try to log in to oracle
         $connctn = oci_connect($usr, $pwd, $db_conn_str);
   
-        // CAN I complain and exit from HERE if fails?
-
+        // If the connection fails start all over again
         if (! $connctn)
         {
         ?>
@@ -37,9 +34,11 @@
             <?php
             require_once("footer.html");
             ?>
-</body>
-</html>
+                </body>
+                </html>
             <?php
+            //Close down everything
+            session_destroy();
             exit;        
         }
 

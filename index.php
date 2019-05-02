@@ -44,32 +44,12 @@
     if ( ! array_key_exists("next_state", $_SESSION) )
     {
         // They are not loged in give them the login page
-        $_SESSION["next_state"] = "login";
+        $_SESSION["next_state"] = "table";
         require_once("login_form.php");
-    }
-    
-    elseif( $_SESSION["next_state"] == "order")
-    {
-        // Get the connection from the session
-        $conn = $_SESSION["oci_con"];
-
-        //Clear the password var becuase we dont need it anymore as we have the connection
-        $password = NULL; 
-
-        //get our function
-        require_once("add_order.php");
-
-        //Add the order
-        add_order($conn, $_POST['firstname'], $_POST['tablenum'], $_POST['item']);
-
-        // Then Give them the order form again for an additional order
-        require_once("order_form.php");
-
-    }
-        
+    }        
 
     //We have oracle login so continue as normal
-    elseif($_SESSION["next_state"] == "login")
+    elseif($_SESSION["next_state"] == "table")
     {
         // Strip username tags
         $username = strip_tags($_POST['username']);
@@ -77,8 +57,13 @@
         // Get password from post into var
         $password = $_POST['password'];
 
-        // Use oci_conect to login in
-        hsu_conn($username, $password);
+        // Use oci_conect to test the login/pass, it will exit out if the connection fails
+        $conn = hsu_conn($username, $password);
+
+        // Store the username and password now that ew know the 
+        $_SESSION["user"] = $username;
+        $_SESSION["pass"] = $password;
+
 
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL;
@@ -87,8 +72,20 @@
         // ACUTAL PAGE DOWN BELOW
         // ACUTAL PAGE DOWN BELOW, we have loged in so lets go!
 
-        // Give them the order form
+        // Give them the table/name form
         $_SESSION["next_state"] = "order";
+        require_once("table_form.php");
+    }
+
+    elseif( $_SESSION["next_state"] == "order")
+    {
+        // Get the connection using the 
+        $conn = hsu_conn($_SESSION["user"], $_SESSION["pass"]);
+
+        //Add the order
+        add_order($conn, $_POST['firstname'], $_POST['tablenum'], $_POST['item']);
+
+        // Then Give them the order form again for an additional order
         require_once("order_form.php");
     }
 
