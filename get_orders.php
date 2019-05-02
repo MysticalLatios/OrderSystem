@@ -34,11 +34,9 @@ function get_your_orders($conn, $name)
         $total_price = $total_price + $Item_price;
 
         ?>
-        <tr> <td> <?= $order_table ?> </td>
-                <td> <?= $order_cus_name ?> </td>
-                <td> <?= $order_active ?> </td>
-                <td> <?= $order_item ?> </td>
+        <tr> <td> <?= $item_name ?> </td>
                 <td> <?= $order_date ?> </td>
+                <td> <?= $Item_price ?> </td>
         </tr> 
         <?php
     }
