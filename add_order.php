@@ -49,5 +49,8 @@ function add_order($conn, $cus_name, $order_table, $order_item)
 
     //free the statment
     oci_free_statement($order_input_stmt);
+
+    //close the connection
+    oci_close($conn);
 }
 ?>
