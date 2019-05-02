@@ -7,11 +7,10 @@ function get_your_orders($conn, $name)
     $order_query_str = 'select i.Item_name, o.Order_date, i.Item_price
                         from Orders o, LineItem i
                         where o.Order_line_item = i.Item_id & o.Cus_name = :name_in';
-                       
-
-    oci_bind_by_name($order_query_str, ":name_in", $name);
 
     $order_query_stmt = oci_parse($conn, $order_query_str);
+
+    oci_bind_by_name($order_query_str, ":name_in", $name);
 
     oci_execute($order_query_stmt, OCI_DEFAULT);
     ?>
