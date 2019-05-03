@@ -1,7 +1,8 @@
-create or replace procedure deactivateorders() is
+create or replace procedure deactivateorders(order_in char(8)) is
     begin
         update Orders
         set Order_active = 'N'
-        where Order_date <= TRUNC(SYSDATE) - 1;
+        where Order_id = order_in;
     end;
 /
+show errors
