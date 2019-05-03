@@ -25,12 +25,4 @@ function deactivate_orders($order_in)
 
     oci_free_statement($order_stmt);
     oci_close($conn);
-
-    //Add button to clear orders older then a day
-    ?>
-    <br/>
-    <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
-        <input type="submit" name="clear_old_orders" value="Clear orders older then a day"/>
-    </form>
-    <?php
 }
