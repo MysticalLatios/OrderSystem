@@ -8,6 +8,7 @@
     require_once("hsu_conn.php");
     require_once("add_order.php");
     require_once("get_orders.php");
+    require_once("staff_dashboard.php")
 ?>
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml">
