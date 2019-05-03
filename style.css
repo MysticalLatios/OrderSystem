@@ -13,9 +13,6 @@ body
 form
 {
   width: fit-content;
-  border-style: solid;
-  border-color: lightgray;
-  border-width: .15em;
 }
 
 hr
@@ -61,7 +58,9 @@ input:focus
 
 table
 {
-  clear: both;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: .15em;
 }
 
 input[type=submit]
