@@ -5,7 +5,10 @@
                 <select name="item" id="item">
                     <option value="F0000001">Peperoni pizza</option>
                     <option value="F0000002">Pinaple pizza</option>
+                    <option value="F0000003">Grilled Cheese</option>
+                    <option value="F0000004">Fried Chiken Slabs</option>
                     <option value="D0000001">Soda</option>
+                    <option value="D0000002">Ice Tea</option>
                 </select>
 
                 <div class="submit">

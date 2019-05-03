@@ -10,6 +10,10 @@
                     <option value="T0000002">Table 2</option>
                     <option value="T0000003">Table 3</option>
                     <option value="T0000004">Table 4</option>
+                    <option value="T0000005">Table 5</option>
+                    <option value="T0000006">Table 6</option>
+                    <option value="T0000007">Table 7</option>
+                    <option value="T0000008">Table 8</option>
                 </select>
 
                 <div class="submit">
