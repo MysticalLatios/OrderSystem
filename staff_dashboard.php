@@ -15,21 +15,16 @@ function staff_dashboard()
     //parse the str to be a stmt
     $money_stmt = oci_parse($conn2 , $money_str);
 
-    oci_bind_by_name($money_stmt,':bind_out', $money_total, OCI_B_NUMBER);
+    oci_bind_by_name($money_stmt,':bind_out', $money_total, 8);
 
     //Execute the statment
     oci_execute($money_stmt, OCI_DEFAULT);
-
-    //get the result of the statment
-    oci_fetch($money_stmt);
-    $total_money = oci_result($money_stmt, "SUM(ITEM_PRICE)");
 
     oci_free_statement($money_stmt);
     oci_close($conn2);
 
     ?>
-        <p>Total Sales: <strong><?= $total_money ?> </strong></p>
-        <p>Total Sales Test2: <strong><?= $money_total ?> </strong></p>        
+        <p>Total Sales: <strong><?= $money_total ?> </strong></p>   
     <?php
 
     //Add button to clear orders older then a day
