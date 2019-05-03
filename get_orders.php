@@ -87,7 +87,7 @@ function get_all_orders($conn)
                     <td> <?= $order_active ?> </td>
                     <td> <?= $order_item ?> </td>
                     <td> <?= $order_date ?> </td>
-                    <td><input type="submit" name="deactivate_order" value=<?=$order_id?> /></td>
+                    <td><input type="submit" class="deactivate" name="deactivate_order" value=<?=$order_id?> /></td>
                 </tr> 
                 <?php
             }

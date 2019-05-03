@@ -21,7 +21,10 @@ fieldset
   float: left;
 }
 
-
+.clearfloat
+{
+  clear: both;
+}
 
 select, input[type=text],input[type=password] {
   padding: .3em .3em;
@@ -53,6 +56,12 @@ input[type=submit]
   background-color: #4CAF50;
   border: none;
   color: white;
+}
+
+.deactivate
+{
+  background-color: lightcoral;
+  color: grey;
 }
 
 .nav

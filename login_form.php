@@ -13,4 +13,5 @@
             <input type="submit" value="Log in" />
         </div>
     </fieldset>
+    <div class="clearfloat"> </div>
 </form>

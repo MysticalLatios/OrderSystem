@@ -15,4 +15,5 @@
                     <input type="submit" value="Order" />
                 </div>
             </fieldset>
+            <div class="clearfloat"> </div>
         </form>
