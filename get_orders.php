@@ -44,8 +44,8 @@ function get_your_orders($conn, $name)
     <?php
 
     //end the connection
-        oci_free_statement($order_query_stmt);
-        oci_close($conn);
+    oci_free_statement($order_query_stmt);
+    oci_close($conn);
 }
 
 function get_all_orders($conn)

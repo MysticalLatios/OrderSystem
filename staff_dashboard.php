@@ -10,10 +10,14 @@ function staff_dashboard()
     $conn2 = hsu_conn($_SESSION["user"], $_SESSION["pass"]);
 
     //Set up prosidure
-    $money_str = 'begin getorders; end;';
+    $money_str = 'begin :bind_out :=  getorders; end;';
 
     //parse the str to be a stmt
     $money_stmt = oci_parse($conn2 , $money_str);
+
+    $money_total;
+
+    oci_bind_by_name($money_stmt,':bind_out', $money_tota);
 
     //Execute the statment
     oci_execute($money_stmt, OCI_DEFAULT);
@@ -22,8 +26,12 @@ function staff_dashboard()
     oci_fetch($money_stmt);
     $total_money = oci_result($money_stmt, "SUM(ITEM_PRICE)");
 
+    oci_free_statement($money_stmt);
+    oci_close($conn2);
+
     ?>
-        <p>Total Sales: <strong><?= $total_money ?> </strong> rows </p>     
+        <p>Total Sales: <strong><?= $total_money ?> </strong> rows </p>
+        <p>Total Sales Test2: <strong><?= $money_total ?> </strong> rows </p>        
     <?php
 
     //Add button to clear orders older then a day
