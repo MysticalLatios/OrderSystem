@@ -9,6 +9,7 @@
     require_once("add_order.php");
     require_once("get_orders.php");
     require_once("staff_dashboard.php")
+    require_once("DeactivateOrders.php")
 ?>
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml">
@@ -60,6 +61,16 @@
         <?php
         require_once("footer.html");
         exit;
+    }
+
+    elseif (array_key_exists("deactivate_order", $_POST) )
+    {
+        deactivate_orders($_POST["deactivate_order"]);
+
+        //Set the next state
+        $_SESSION["next_state"] = "admin_refresh";
+
+        staff_dashboard();
     }
     
     //We have oracle login so continue as normal

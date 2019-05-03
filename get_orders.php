@@ -51,7 +51,7 @@ function get_your_orders($conn, $name)
 //Gets all active orders
 function get_all_orders($conn)
 {
-    $order_query_str = "select o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
+    $order_query_str = "select o.Order_id o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
                             from Orders o, LineItem i
                             where o.Order_line_item = i.Item_id AND o.Order_active ='Y'";
                            
@@ -60,40 +60,45 @@ function get_all_orders($conn)
     oci_execute($order_query_stmt, OCI_DEFAULT);
     ?>
 
-    <table>
-        <caption> Active Orders </caption>
-        <tr> <th scope="col"> Table </th>
-                <th scope="col"> Customer name </th>
-                <th scope="col"> Active </th>
-                <th scope="col"> Order Item </th>
-                <th scope="col"> Order Date </th> </tr>
+    <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
+        <table>
+            <caption> Active Orders </caption>
+            <tr> <th scope="col"> Table </th>
+                    <th scope="col"> Customer name </th>
+                    <th scope="col"> Active </th>
+                    <th scope="col"> Order Item </th>
+                    <th scope="col"> Order Date </th>
+                    <th scope="col"> Deactivate Order </th>  </tr>
 
-    <?php
-        while (oci_fetch($order_query_stmt))
-        {
-            $order_table = oci_result($order_query_stmt, 'ORDER_TABLE');
-            $order_cus_name = oci_result($order_query_stmt, 'CUS_NAME');
-            $order_active = oci_result($order_query_stmt, 'ORDER_ACTIVE');
-            $order_item = oci_result($order_query_stmt, 'ITEM_NAME');
-            $order_date = oci_result($order_query_stmt, 'ORDER_DATE');
+        <?php
+            while (oci_fetch($order_query_stmt))
+            {
+                $order_id = oci_result($order_query_stmt, 'ORDER_ID');
+                $order_table = oci_result($order_query_stmt, 'ORDER_TABLE');
+                $order_cus_name = oci_result($order_query_stmt, 'CUS_NAME');
+                $order_active = oci_result($order_query_stmt, 'ORDER_ACTIVE');
+                $order_item = oci_result($order_query_stmt, 'ITEM_NAME');
+                $order_date = oci_result($order_query_stmt, 'ORDER_DATE');
 
 
-            ?>
-            <tr> <td> <?= $order_table ?> </td>
+                ?>
+                <tr> <td> <?= $order_table ?> </td>
                     <td> <?= $order_cus_name ?> </td>
                     <td> <?= $order_active ?> </td>
                     <td> <?= $order_item ?> </td>
                     <td> <?= $order_date ?> </td>
-            </tr> 
-            <?php
-        }
+                    <td><input type="submit" name="deactivate_order" value=<?=$order_id?> /></td>
+                </tr> 
+                <?php
+            }
         ?>
         </table>
+    </form>
 
-        <?php
+    <?php
 
-        //end the connection
-            oci_free_statement($order_query_stmt);
-            oci_close($conn);
+    //end the connection
+        oci_free_statement($order_query_stmt);
+        oci_close($conn);
 }
 
