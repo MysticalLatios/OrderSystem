@@ -15,8 +15,14 @@ form
   width: fit-content;
 }
 
+hr
+{
+  border: solid;
+}
+
 fieldset
 {
+  border-style: solid;
   width: fit-content;
   float: left;
 }
