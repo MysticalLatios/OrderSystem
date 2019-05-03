@@ -27,7 +27,7 @@ input:focus
 }
 
 select {
-  padding: .1em .1em;
+  padding: .3em .3em;
   border: none;
   border-radius: 4px;
   background-color: #f1f1f1;
@@ -36,7 +36,7 @@ select {
 [type="button"],[type=submit]
 {
   border: none;
-  padding: .1em .1em;
+  padding: .5em .5em;
   text-decoration: none;
   cursor: pointer;
 }
