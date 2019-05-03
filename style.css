@@ -18,6 +18,7 @@ form
 fieldset
 {
   width: fit-content;
+  float: left;
 }
 
 
@@ -40,6 +41,11 @@ input:focus
   padding: .5em .8em;
   text-decoration: none;
   cursor: pointer;
+}
+
+table
+{
+  clear: both;
 }
 
 input[type=submit]
