@@ -27,12 +27,7 @@ function staff_dashboard()
         <p>Total Sales: <strong><?= $money_total ?> </strong></p>   
     <?php
 
-    //Add button to clear orders older then a day
-    ?>
-    <br/>
-    <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
-        <input type="submit" name="clear_old_orders" value="Clear orders older then a day"/>
-    </form>
-    <?php
+    
+
 }
 
