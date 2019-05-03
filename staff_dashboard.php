@@ -10,7 +10,7 @@ function staff_dashboard()
     $conn2 = hsu_conn($_SESSION["user"], $_SESSION["pass"]);
 
     //Set up prosidure
-    $money_str = 'begin :bind_out :=  getorders; end;';
+    $money_str = 'begin :bind_out := getordersum; end;';
 
     //parse the str to be a stmt
     $money_stmt = oci_parse($conn2 , $money_str);
