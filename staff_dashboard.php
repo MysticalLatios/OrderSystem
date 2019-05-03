@@ -15,8 +15,6 @@ function staff_dashboard()
     //parse the str to be a stmt
     $money_stmt = oci_parse($conn2 , $money_str);
 
-    $money_total = 0;
-
     oci_bind_by_name($money_stmt,':bind_out', $money_total);
 
     //Execute the statment
@@ -30,8 +28,8 @@ function staff_dashboard()
     oci_close($conn2);
 
     ?>
-        <p>Total Sales: <strong><?= $total_money ?> </strong> rows </p>
-        <p>Total Sales Test2: <strong><?= $money_total ?> </strong> rows </p>        
+        <p>Total Sales: <strong><?= $total_money ?> </strong></p>
+        <p>Total Sales Test2: <strong><?= $money_total ?> </strong></p>        
     <?php
 
     //Add button to clear orders older then a day
