@@ -8,3 +8,4 @@ create or replace function getordersum() is
         return total_money;
     end;
 /
+show errors
