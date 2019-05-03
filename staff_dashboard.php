@@ -15,9 +15,9 @@ function staff_dashboard()
     //parse the str to be a stmt
     $money_stmt = oci_parse($conn2 , $money_str);
 
-    $money_total;
+    $money_total = 0;
 
-    oci_bind_by_name($money_stmt,':bind_out', $money_tota);
+    oci_bind_by_name($money_stmt,':bind_out', $money_total);
 
     //Execute the statment
     oci_execute($money_stmt, OCI_DEFAULT);
