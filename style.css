@@ -55,20 +55,19 @@ table
 input[type=submit]
 {
   background-color: #4CAF50;
-  border: none;
   color: white;
+}
+
+.nav
+{
+  background-color:lightgreen;
 }
 
 .deactivate
 {
   background-color: lightcoral;
   color: grey;
-  padding: .2em .1em;
-}
-
-.nav
-{
-  background-color:lightgreen;
+  padding: .2em .2em;
 }
 
 #logout
