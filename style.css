@@ -18,7 +18,10 @@ form
 hr
 {
   border: solid;
+  width: 50%;
+  margin-inline-start: 0;
 }
+
 
 fieldset
 {
