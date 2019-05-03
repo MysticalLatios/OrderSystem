@@ -26,6 +26,14 @@ fieldset
   clear: both;
 }
 
+.deactivate
+{
+  background-color: lightcoral;
+  color: grey;
+  padding: .2em .1em;
+  border-radius: 2px;
+}
+
 select, input[type=text],input[type=password] {
   padding: .3em .3em;
   border: none;
@@ -58,11 +66,7 @@ input[type=submit]
   color: white;
 }
 
-.deactivate
-{
-  background-color: lightcoral;
-  color: grey;
-}
+
 
 .nav
 {
