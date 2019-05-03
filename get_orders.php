@@ -51,9 +51,9 @@ function get_your_orders($conn, $name)
 //Gets all active orders
 function get_all_orders($conn)
 {
-    $order_query_str = 'select o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
+    $order_query_str = "select o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
                             from Orders o, LineItem i
-                            where o.Order_line_item = i.Item_id AND o.Order_active ="Y"';
+                            where o.Order_line_item = i.Item_id AND o.Order_active ='Y'";
                            
     $order_query_stmt = oci_parse($conn, $order_query_str);
 
