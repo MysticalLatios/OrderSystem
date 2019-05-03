@@ -1,4 +1,4 @@
-create or replace function getordersum() is
+create or replace function getordersum is
     total_money number;
     begin
         total_money = select sum(i.Item_price)
