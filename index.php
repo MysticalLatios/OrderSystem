@@ -33,9 +33,9 @@
     <div id="nav"> 
         <h2> Welcome to our restaurant! </h2>
         <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
-            <button type="button" onclick="location.href='index.php'">Customer Ordering</button>
-            <button type="button" onclick="location.href='staff.php'" >Show orders</button>
-            <input type="submit" name="log_out" value="Log out" />
+            <button class="nav" type="button" onclick="location.href='index.php'">Customer Ordering</button>
+            <button class="nav" type="button" onclick="location.href='staff.php'" >Show orders</button>
+            <input class="nav" id="logout" type="submit" name="log_out" value="Log out" />
         </form>
 
         <hr />
