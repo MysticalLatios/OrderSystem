@@ -33,7 +33,7 @@ select {
   background-color: #f1f1f1;
 }
 
-button
+[type="button"]
 {
   border: none;
   padding: 16px 24px;
