@@ -77,23 +77,19 @@
         $_SESSION["user"] = $username;
         $_SESSION["pass"] = $password;
 
-
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL;
 
-        // Use hsu to login in
-        $conn = hsu_conn($_SESSION["user"], $_SESSION["pass"]);
+        $_SESSION["next_state"] == "admin_refresh"
 
-        //Display all the orders for them
-        get_all_orders($conn);
+        // Give them the staff dashboard
+        staff_dashboard();
+    }
 
-        ?>
-        <br/>
-        <form method="post" action="<?= htmlentities($_SERVER['PHP_SELF'], ENT_QUOTES) ?>">
-            <input type="submit" name="clear_old_orders" value="Clear orders older then a day"/>
-        </form>
-        <?php
-        
+    elseif($_SESSION["next_state"] == "admin_refresh")
+    {
+        // Give them the staff dashboard
+        staff_dashboard();
     }
 
     else
