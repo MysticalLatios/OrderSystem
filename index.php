@@ -9,7 +9,6 @@
     require_once("add_order.php");
     require_once("get_orders.php");
 ?>
-
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml">
 
@@ -55,7 +54,12 @@
     {
         //If we press logout, logout
         session_destroy();
+        ?>
+        <h2>You have loged out</h2>
+        <?php
+        require_once("footer.html");
         exit;
+        
     }  
 
     //We have oracle login so continue as normal
@@ -111,6 +115,7 @@
         // Then Give them the order form again for an additional order
         require_once("order_form.php");
 
+        //Show current orders for this person
         get_your_orders($conn, $_SESSION['firstname']);
     }
 

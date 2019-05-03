@@ -1,8 +1,6 @@
 <?php
 function get_your_orders($conn, $name)
 {
-    
-
     // let's set up a SQL SELECT statement and ask the
     $order_query_str = 'select i.Item_name, o.Order_date, i.Item_price
                         from Orders o, LineItem i
@@ -48,5 +46,53 @@ function get_your_orders($conn, $name)
     //end the connection
         oci_free_statement($order_query_stmt);
         oci_close($conn);
+}
+
+function get_all_orders($conn)
+{
+    $order_query_str = 'select o.Order_table, o.Cus_name , o.Order_active, i.Item_name, o.Order_date
+                            from Orders o, LineItem i
+                            where o.Order_line_item = i.Item_id';
+                           
+    $order_query_stmt = oci_parse($conn, $order_query_str);
+
+    oci_execute($order_query_stmt, OCI_DEFAULT);
+    ?>
+
+    <table>
+        <caption> Orders </caption>
+        <tr> <th scope="col"> Table </th>
+                <th scope="col"> Customer name </th>
+                <th scope="col"> Active </th>
+                <th scope="col"> Order Item </th>
+                <th scope="col"> Order Date </th> </tr>
+
+    <?php
+        while (oci_fetch($order_query_stmt))
+        {
+            $order_table = oci_result($order_query_stmt, 'ORDER_TABLE');
+            $order_cus_name = oci_result($order_query_stmt, 'CUS_NAME');
+            $order_active = oci_result($order_query_stmt, 'ORDER_ACTIVE');
+            $order_item = oci_result($order_query_stmt, 'ITEM_NAME');
+            $order_date = oci_result($order_query_stmt, 'ORDER_DATE');
+
+
+            ?>
+            <tr> <td> <?= $order_table ?> </td>
+                    <td> <?= $order_cus_name ?> </td>
+                    <td> <?= $order_active ?> </td>
+                    <td> <?= $order_item ?> </td>
+                    <td> <?= $order_date ?> </td>
+            </tr> 
+            <?php
+        }
+        ?>
+        </table>
+
+        <?php
+
+        //end the connection
+            oci_free_statement($order_query_stmt);
+            oci_close($conn);
 }
 
