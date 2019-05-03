@@ -10,7 +10,7 @@ function deactivate_orders($order_in)
     //parse the str to be a stmt
     $order_stmt = oci_parse($conn , $order_str);
 
-    oci_bind_by_name($how_many_stmt, ":order_in", $order_in);
+    oci_bind_by_name($order_stmt, ":order_in", $order_in);
 
     //Execute the statment
     oci_execute($order_stmt, OCI_DEFAULT);
