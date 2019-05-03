@@ -1,4 +1,4 @@
-create or replace procedure deactivateorders(order_in char(8)) is
+create or replace procedure deactivateorders(order_in char) is
     begin
         update Orders
         set Order_active := 'N'
