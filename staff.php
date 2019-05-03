@@ -81,7 +81,8 @@
         //Clear the password var becuase we dont need it anymore as we have the connection
         $password = NULL;
 
-        $_SESSION["next_state"] == "admin_refresh";
+        //Set the next state
+        $_SESSION["next_state"] = "admin_refresh";
 
         // Give them the staff dashboard
         staff_dashboard();
